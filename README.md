@@ -1,5 +1,8 @@
-# hackMIT2024
 npm install convex
 npm install @clerk/clerk-react
-add this key to .env.local: VITE_CLERK_PUBLISHABLE_KEY=pk_test_cHJlbWl1bS1iZW5nYWwtMTQuY2xlcmsuYWNjb3VudHMuZGV2JA
+npm install react-router-dom
+npm install openai
+
+
+add this key to .env.local:
 to run the app: npm run dev

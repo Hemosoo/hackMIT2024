@@ -15,7 +15,6 @@ import { SignedIn, SignedOut, SignInButton, UserButton, SignOutButton } from "@c
 
 function App() {
   const tasks = useQuery(api.tasks.get);
-  const [count, setCount] = useState(0)
 
   return (
     <header>
