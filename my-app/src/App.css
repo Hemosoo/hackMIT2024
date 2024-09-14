@@ -44,7 +44,7 @@
 /* General Styles */
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #f0f4fa;
   color: #333;
 }
@@ -85,8 +85,11 @@ body {
 
 /* Main Content */
 .main-content {
-  text-align: center;
+  text-align: left;
   padding: 3rem 1rem;
+  max-width: 40%;
+  margin: 0;
+  padding-left: 5rem;
 }
 
 .main-content h1 {
@@ -97,17 +100,24 @@ body {
 .main-content p {
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
+  color: #505F98;
 }
 
 .main-content ul {
-  list-style-type: none;
+  list-style-type: disc;
   padding: 0;
   margin-bottom: 2rem;
+  padding-left: 2rem;
 }
 
 .main-content li {
   margin-bottom: 0.75rem;
   font-size: 1.15rem;
+  color: #505F98;
+}
+
+.main-content li::marker {
+  color: #505F98;
 }
 
 /* Main Sign-In Button */
