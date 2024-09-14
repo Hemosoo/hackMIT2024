@@ -10,6 +10,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import Home from "./home/home";
 import { SignedIn, SignedOut, SignInButton, UserButton, SignOutButton } from "@clerk/clerk-react";
 
 function App() {
@@ -18,12 +19,12 @@ function App() {
 
   return (
     <header>
-      <SignedOut>
+    <SignedOut>
         <SignInButton />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-        <SignOutButton />
+    </SignedOut>
+    <SignedIn>
+            <UserButton />
+            <SignOutButton />
       </SignedIn>
     </header>
   )
