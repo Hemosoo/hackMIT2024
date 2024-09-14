@@ -5,6 +5,7 @@ import { SavedRecipesPage } from './pages/SavedRecipesPage';
 import { ShoppingCartPage } from './pages/ShoppingCartPage';
 import { ContactUsPage } from './pages/ContactUs';
 import { SearchPage } from './pages/SearchPage';
+import { LLM } from './LLM/llm';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/search-recipes" element={<SearchPage />}/>
         <Route path="/shopping-cart" element={<ShoppingCartPage />}/>
         <Route path="/shopping-cart" element={<ShoppingCartPage />}/>
-
+        <Route path="/llm" element={<LLM />}/>
       </Routes>
     </Router>
     </>
