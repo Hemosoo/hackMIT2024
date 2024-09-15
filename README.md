@@ -1,4 +1,6 @@
-# Inspiration
+# LLMenu
+
+## Inspiration
 
 Many of us have found ourselves with random ingredients or leftovers, unsure of how to use them; so, we created a tool that makes it easy for anyone to turn those ingredients into something delicious.
 
@@ -17,7 +19,6 @@ We faced a couple of key challenges throughout the hackathon, including the fact
 ## Accomplishments that we're proud of
 
 We built an efficient and user-friendly interface to ensure the best user experience. We also successfully integrated the LLM into our platform.
-
 
 
 <!-- npm install convex
