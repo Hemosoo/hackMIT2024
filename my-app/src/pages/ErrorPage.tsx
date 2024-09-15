@@ -7,7 +7,7 @@ export const ErrorPage: React.FC = () => {
     const mainContent = <>
         <h1>Error 404</h1>
         <p> The page you have requested is not found.</p>
-        <button onClick={() => navigate("/")}>Go Back to Dashboard</button>
+        <button className='error-button' onClick={() => navigate("/")}>Go Back to Dashboard</button>
         </>
     return (
         <>

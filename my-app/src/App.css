@@ -20,12 +20,6 @@ body {
   display: block;
 }
 
-.header, .footer {
-  background-color: #f8f8f8; /* Optional: Adjust background color if needed */
-  padding: 1rem; /* Adjust padding as needed */
-  width: 100%;
-}
-
 /* Navigation Bar */
 .navbar {
   display: flex;
@@ -125,12 +119,13 @@ body {
 
 /* Footer */
 .footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-  background-color: #f0f4fa;
-  border-top: 1px solid #e5e5e5;
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Distribute space between items */
+  align-items: center; /* Align items vertically in the center */
+  padding: 2rem; /* Add padding around the content */
+  background-color: #f0f4fa; /* Set background color */
+  border-top: 1px solid #e5e5e5; /* Add a top border */
+  max-width: 100%;
 }
 
 .footer-logo {
@@ -163,3 +158,78 @@ body {
 
 /* Search Page */
 
+.search-page-saved-recipes {
+  background-color: #001f54;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 40%;
+  padding: 20px 0px;
+}
+
+.search-bar {
+  width: 100%;
+  color-scheme: light;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  outline: none;
+  transition: border-color 0.3s;
+  /* Ensure no display or visibility rules are hiding the input */
+}
+
+.search-bar:focus {
+  border-color: #007bff;
+}
+
+.results-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap; /* Ensures chips stay in a single line */
+  max-width: 110%; /* Restrict width to 40% */
+  overflow-x: auto; /* Allows horizontal scrolling if needed */
+  margin-top: 20px;
+  padding: 5px 0;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  border-radius: 16px;
+  padding: 2px 2px;
+  font-size: 14px;
+  color: #333;
+  margin: 8px; /* Spacing between chips */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chip-button {
+  background: none;
+  border: none;
+  margin: 2px;
+  color: #001f54;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.chip-button :focus{
+  outline: none; /* Ensure no outline on focus */
+  /* Optional: Add a custom focus style if desired */
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2); /* Custom focus style */
+}
+
+/* Error Page */
+
+.error-button {
+  background-color: #001f54;
+}
