@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './../App.css';
-import { SignedIn, SignedOut, SignInButton, UserButton, SignOutButton } from "@clerk/clerk-react";
 import { Ingredient } from '../types/Ingredient';
 
+interface LLMProps {
+  selectedIngredients: Ingredient[]
+}
 
-
-export const LLM: React.FC = () => {
+export const LLM: React.FC<LLMProps> = ( { selectedIngredients } ) => {
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const SINGLE_INPUT = (ingredients: String) => {
@@ -34,15 +35,9 @@ export const LLM: React.FC = () => {
     )
   };
 
-  const ingredients: Ingredient[] = [
-    {id: 1, name: "chicken", foodGroup: "meat"},
-    {id: 2, name: "beef", foodGroup: "meat"},
-    {id: 3, name: "pork", foodGroup: "meat"},
-    {id: 4, name: "lamb", foodGroup: "meat"},
-  ]
+  const ingredients: Ingredient[] = selectedIngredients
 
   const ingredientNames = ingredients.map(ingredient => ingredient.name).join(", ");
-
   interface Recipe {
     "Recipe Title": string;
     "Time to Cook": string;
@@ -126,7 +121,7 @@ export const LLM: React.FC = () => {
       );
 
       setResponse(result.data.choices[0].message.content);
-      setResponse(response.replace("*", ""));
+      response.replace(/\*/g, "");
     } catch (error) {
       console.error('Error:', error);
       if (axios.isAxiosError(error)) {
@@ -144,36 +139,90 @@ export const LLM: React.FC = () => {
 
     setIsLoading(false);
   };
-  
-  console.log(parseRecipeText(response));
+
+  const printRecipes = (recipes: Recipe[]) => {
+    return recipes.map((recipe, index) => (
+      <div key={index}>
+        <h3>{recipe["Recipe Title"]}</h3>
+        <p>Time to Cook: {recipe["Time to Cook"]}</p>
+        <p>Ingredients: {recipe["Ingredients"].join(", ")}</p>
+        <p>How to Make:</p>
+        <ol>
+          {recipe["How to Make"].map((step, stepIndex) => (
+            <li key={stepIndex}>{step}</li>
+          ))}
+        </ol>
+        <p>Number of Servings: {recipe["Number of Servings"]}</p>
+        <p>Ingredients used: {recipe["Ingredients used from <ingredients>"]}</p>
+        <p>Ingredients not used: {recipe["Ingredients not used from <ingredients>"]}</p>
+        <p>Additional ingredients needed: {recipe["Ingredients needed not in <ingredients>"]}</p>
+      </div>
+    ));
+  };
+
+  const recipes: Recipe[] = response ? parseRecipeText(response) : [];
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const handleRowClick = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   return (
+    // <div style={{alignItems: 'right'}}>
+    //   <button className='generating-button' onClick={handleSubmit} disabled={isLoading}>{isLoading ? 'Loading...' : 'Generate Recipes'}</button>
+
+    //   {recipes && recipes.length > 0 ? (
+    //     <div>
+    //       {printRecipes(recipes)}
+    //     </div>
+    //   ) : (
+    //     <p>No recipes generated yet.</p>
+    //   )}
+    // </div>
     <div>
-      <header>
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-          <SignOutButton />
-        </SignedIn>
-      </header>
-      <main>
-        <h1>ChatGPT Static Prompt App</h1>
-        <SignedIn>
-          <button onClick={handleSubmit} disabled={isLoading}>
-            {isLoading ? 'Generating...' : 'Generate Essay'}
-          </button>
-          {response && (
-            <div className="response">
-              <h2>Response:</h2>
-              <p>{response}</p>
-            </div>
-          )}
-        </SignedIn>
-        <SignedOut>
-          <p>Please sign in to use the ChatGPT app.</p>
-        </SignedOut>
-      </main>
+      <button className='generating-button' onClick={handleSubmit} disabled={isLoading}>
+        {isLoading ? 'Loading...' : 'Generate Recipes'}
+      </button>
+      {recipes.length > 0 ? (
+        <table className='recipe-table'>
+          <thead>
+            <tr>
+              <th>Recipe Title</th>
+              <th>Time to Cook</th>
+            </tr>
+          </thead>
+          <tbody>
+            {recipes.map((recipe, index) => (
+              <React.Fragment key={index}>
+                <tr onClick={() => handleRowClick(index)} className='recipe-row'>
+                  <td>{recipe["Recipe Title"]}</td>
+                  <td>{recipe["Time to Cook"]}</td>
+                </tr>
+                {expandedIndex === index && (
+                  <tr>
+                    <td colSpan={2}>
+                      <div>
+                        <p><strong>Ingredients:</strong> {recipe["Ingredients"].join(", ")}</p>
+                        <p><strong>How to Make:</strong></p>
+                        <ol>
+                          {recipe["How to Make"].map((step, stepIndex) => (
+                            <li key={stepIndex}>{step}</li>
+                          ))}
+                        </ol>
+                        <p><strong>Number of Servings:</strong> {recipe["Number of Servings"]}</p>
+                        <p><strong>Ingredients used:</strong> {recipe["Ingredients used from <ingredients>"]}</p>
+                        <p><strong>Ingredients not used:</strong> {recipe["Ingredients not used from <ingredients>"]}</p>
+                        <p><strong>Additional ingredients needed:</strong> {recipe["Ingredients needed not in <ingredients>"]}</p>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>No Recipes Found...</p>
+      )}
     </div>
   );
 }

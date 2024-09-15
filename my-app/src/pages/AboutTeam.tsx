@@ -1,5 +1,6 @@
 import React from "react";
 import { PageFormat } from "../shared/PageFormat";
+import ProfileGrid from "../shared/ProfileGrid";
 
 export const AboutTeamPage: React.FC = () => {
     const mainContent = <>
@@ -8,6 +9,7 @@ export const AboutTeamPage: React.FC = () => {
         both delightful and sustainable. Here's a peek behind the scenes 
         at the team dedicated to helping you reduce food waste and create 
         delicious meals:</p>
+        <ProfileGrid></ProfileGrid>
     </>
     return (
         <>

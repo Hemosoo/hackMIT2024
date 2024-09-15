@@ -1,7 +1,7 @@
 
 import React from "react";
 import { HeaderSignedIn } from "../shared/HeaderSignedIn";
-import { SignedOut, SignInButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 import { Footer } from "../shared/Footer";
 
 export const SignInPage: React.FC = () => {
@@ -24,8 +24,13 @@ export const SignInPage: React.FC = () => {
                 </ul>
                 <p>Start cooking smarter and sustainably today with LLMenu!</p>
                 <SignedOut>
-                <SignInButton/>
+                    <SignInButton/>
                 </SignedOut>
+                <SignedIn>
+                    <a href="/search-recipes">
+                        <button className="button-search">Start finding recipes!</button>
+                    </a>
+                </SignedIn>
             </main>
 
             <Footer></Footer>

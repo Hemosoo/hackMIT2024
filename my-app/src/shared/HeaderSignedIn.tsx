@@ -5,31 +5,34 @@ import logo from '../assets/LLMenu_logo.png'
 export const HeaderSignedIn: React.FC = () => {
     return (
         <>
-            <header className="navbar">
-                <div className="nav-left">
-                <SignedIn>
-                    <a href="/search-recipes">
-                        <button>Search New Recipe</button>
-                    </a>
-                    <a href="/shopping-cart">
-                        <button>Shopping Cart</button>
-                    </a>
-                    <a href="/saved-recipes">
-                        <button>Saved Recipes</button>
-                    </a>
-                </SignedIn>
-                </div>
-                <div className="logo">
-                    <img src={logo} alt="LLMenu Logo" />
-                </div>
-                <SignedOut>
-                    <SignInButton />
-                </SignedOut>
-                <SignedIn>
-                    <search></search>
+        <header className="navbar">
+        <div className="nav-left">
+            <div className="logo">
+            <img src={logo} alt="LLMenu Logo" />
+            </div>
+            <SignedIn>
+            <nav>
+                <a href="/search-recipes">
+                    <button className="button-search">Search New Recipe</button>
+                </a>
+                <a href="/saved-recipes">
+                    <button>Saved Recipes</button>
+                </a>
+            </nav>
+            </SignedIn>
+        </div>
+        
+        <div className="nav-right">
+            <SignedOut>
+            <SignInButton />
+            </SignedOut>
+            <SignedIn>
+                <div>
                     <UserButton />
-                </SignedIn>
-            </header>
+                </div>
+            </SignedIn>
+        </div>
+        </header>
         </>
     );
 };

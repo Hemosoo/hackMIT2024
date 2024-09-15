@@ -9,9 +9,8 @@ export const Footer: React.FC = () => {
                 <nav>
                 <a href="/">Home</a>
                 <a href="/about-team">About</a>
-                <a href="/contact-us">Contact</a>
                 </nav>
-                <p>© LLMenu 2024 All Rights Reserved</p>
+                <p>© LLMenu 2024</p>
             </footer>
         </>
     );

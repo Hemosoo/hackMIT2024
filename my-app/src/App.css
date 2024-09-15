@@ -63,6 +63,15 @@ body {
   cursor: pointer;
 }
 
+.nav-right {
+  align-items: center;
+}
+
+.navbar .button-search {
+  background-color: #001f54;
+  color: white;
+}
+
 /* Main Content */
 .main-content {
   text-align: left;
@@ -163,8 +172,7 @@ body {
 }
 
 .search-container {
-  width: 100%;
-  max-width: 40%;
+  width: 90%;
   padding: 20px 0px;
 }
 
@@ -191,45 +199,139 @@ body {
   margin: 0;
 }
 
-.chips-container {
+.chip-container {
   display: flex;
-  flex-wrap: wrap; /* Ensures chips stay in a single line */
-  max-width: 110%; /* Restrict width to 40% */
-  overflow-x: auto; /* Allows horizontal scrolling if needed */
-  margin-top: 20px;
-  padding: 5px 0;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 10px; /* Optional: Add space between buttons */
 }
 
-.chip {
+.hasIngredients {
   display: flex;
   align-items: center;
   background-color: #f1f1f1;
   border-radius: 16px;
-  padding: 2px 2px;
+  padding: 10px 10px;
   font-size: 14px;
   color: #333;
-  margin: 8px; /* Spacing between chips */
+  width: max-content;
+  margin: 10px 10px 2px 0px; /* Spacing between chips */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.chip-button {
-  background: none;
-  border: none;
-  margin: 2px;
-  color: #001f54;
-  font-size: 16px;
-  cursor: pointer;
-  transition: color 0.3s;
+.hasIngredients span {
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis for overflowed text */
 }
 
-.chip-button :focus{
-  outline: none; /* Ensure no outline on focus */
-  /* Optional: Add a custom focus style if desired */
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2); /* Custom focus style */
+.chips-container {
+  border: #e5e5e5 solid;
+  display: flex;
+  padding: 10px;
+  margin: 10px 0px;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 10px; /* Add space between buttons */
+  min-width: 100%;
+  max-height: 300px; /* Set a maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Optionally hide horizontal scrolling if not needed */
+}
+
+.chip-button {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  border-radius: 16px;
+  padding: 10px 10px;
+  font-size: 14px;
+  color: #333;
+  width: max-content;
+  margin: 0px 15px 6px 0px; /* Spacing between chips */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.generating-content {
+  /* display: flex;
+  justify-content: space-between; /* Align children to the left and right */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Creates two equal columns */
+  gap: 20px;
+  align-content: end;
+} */
+
+.left-content {
+  width: 50%;
+}
+
+.right-content {
+  width: 100%;
+  align-content: left;
 }
 
 /* Error Page */
 
 .error-button {
   background-color: #001f54;
+}
+
+.button-search {
+  background-color: #001f54;
+  color: white;
+}
+
+.generating-button {
+  margin: 25px 0px;
+}
+
+.recipe-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recipe-table th, .recipe-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.recipe-row {
+  cursor: pointer; /* Change cursor to indicate clickable item */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+}
+
+.recipe-row:hover {
+  background-color: #f1f1f1; /* Light background on hover */
+}
+
+.recipe-row:focus {
+  outline: 2px solid #007bff; /* Optional: Outline for focus state (for accessibility) */
+}
+
+.recipe-row:active {
+  background-color: #ddd; /* Slightly darker background on click */
+}
+
+/* about us */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Create a 2x2 grid */
+  gap: 16px; /* Space between items */
+  max-width: 600px; /* Optional: Limit the maximum width of the grid */
+  margin: auto; /* Center the grid horizontally */
+}
+
+.profile-item {
+  text-align: center; /* Center align text and images */
+}
+
+.profile-picture {
+  width: 100px; /* Size of the profile picture */
+  height: 100px; /* Size of the profile picture */
+  border-radius: 50%; /* Make the picture circular */
+  object-fit: cover; /* Cover the area of the circle */
+  border: 2px solid #ddd; /* Optional: Border around the picture */
+}
+
+.profile-name {
+  margin-top: 8px; /* Space between the picture and the name */
+  font-size: 16px; /* Font size of the name */
+  color: #333; /* Text color */
 }
