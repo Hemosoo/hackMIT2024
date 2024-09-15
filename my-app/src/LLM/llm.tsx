@@ -9,7 +9,7 @@ import { Ingredient } from './types/Ingredient';
 export const LLM: React.FC = () => {
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const SINGLE_INPUT = (ingredients: Ingredient[]) => {
+  const SINGLE_INPUT = (ingredients: String) => {
 
     return(
       `Come up with as many popular recipe using a combination of some of these ingredients: <ingredients> ${ingredients} </ingredients>. You do not need to use every ingredient given, especially if the combination is not well-known. Return in the format. 
@@ -33,6 +33,15 @@ export const LLM: React.FC = () => {
     )
   };
 
+  const ingredients: Ingredient[] = [
+    {id: 1, name: "chicken", foodGroup: "meat"},
+    {id: 2, name: "beef", foodGroup: "meat"},
+    {id: 3, name: "pork", foodGroup: "meat"},
+    {id: 4, name: "lamb", foodGroup: "meat"},
+  ]
+
+  const ingredientNames = ingredients.map(ingredient => ingredient.name).join(", ");
+
   const handleSubmit = async () => {
     setIsLoading(true);
 
@@ -43,7 +52,7 @@ export const LLM: React.FC = () => {
           model: "gpt-4o",
           messages: [
             { role: "system", content: "" },
-            { role: "user", content: SINGLE_INPUT() }
+            { role: "user", content: SINGLE_INPUT(ingredientNames) }
           ]
         },
         {
