@@ -126,6 +126,7 @@ export const LLM: React.FC = () => {
       );
 
       setResponse(result.data.choices[0].message.content);
+      setResponse(response.replace("*", ""));
     } catch (error) {
       console.error('Error:', error);
       if (axios.isAxiosError(error)) {
@@ -143,7 +144,7 @@ export const LLM: React.FC = () => {
 
     setIsLoading(false);
   };
-  setResponse(response.replace("*", ""));
+  
   console.log(parseRecipeText(response));
   return (
     <div>
