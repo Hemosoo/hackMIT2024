@@ -15,9 +15,6 @@ export const HeaderSignedIn: React.FC = () => {
                 <a href="/search-recipes">
                     <button className="button-search">Search New Recipe</button>
                 </a>
-                <a href="/saved-recipes">
-                    <button>Saved Recipes</button>
-                </a>
             </nav>
             </SignedIn>
         </div>

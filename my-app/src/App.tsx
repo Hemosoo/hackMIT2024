@@ -38,12 +38,6 @@ function App() {
           // </ProtectedRoute>
         } />
         
-        <Route path="/saved-recipes" element={
-          // <ProtectedRoute>
-            <SavedRecipesPage />
-          // </ProtectedRoute>
-        } />
-        
         <Route path="/search-recipes" element={
           // <ProtectedRoute>
             <SearchPage />

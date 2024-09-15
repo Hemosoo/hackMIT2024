@@ -3,45 +3,39 @@ import popularIngredients from "./popularIngredients";
 import { Ingredient } from "../types/Ingredient";
 
 interface SearchIngredientsProps {
-    onSelectedIngredientsChange: (ingredients: Ingredient[]) => void; // Callback prop type
+    selectedIngredients: Ingredient[]; // Selected ingredients controlled by parent
+    onSelectedIngredientsChange: (ingredients: Ingredient[]) => void; // Callback to update parent
 }
-
-export const SearchIngredients: React.FC<SearchIngredientsProps> = ({ onSelectedIngredientsChange }) => {
+export const SearchIngredients: React.FC<SearchIngredientsProps> = ({ selectedIngredients, onSelectedIngredientsChange }) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [filteredIngredients, setFilteredIngredients] = useState<Ingredient[]>(popularIngredients);
-    const [selectedIngredients, setSelectedIngredients] = useState<Ingredient[]>([]);
 
     useEffect(() => {
-        // Call the callback function whenever selectedIngredients changes
-        onSelectedIngredientsChange(selectedIngredients);
-    }, [selectedIngredients, onSelectedIngredientsChange]);
-
-
-    const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-        const term = event.target.value;
-        setSearchTerm(term);
-
+        // Filter the ingredients when searchTerm changes
         const results = popularIngredients.filter(ingredient =>
-            ingredient.name.toLowerCase().includes(term.toLowerCase())
+            ingredient.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredIngredients(results);
+    }, [searchTerm]);
+
+    const toggleChipActive = (ingredient: Ingredient) => {
+        // Check if the ingredient is already selected
+        const isSelected = selectedIngredients.some(item => item.id === ingredient.id);
+    
+        let updatedSelectedIngredients;
+        if (isSelected) {
+            // If the ingredient is already selected, remove it from the list
+            updatedSelectedIngredients = selectedIngredients.filter(item => item.id !== ingredient.id);
+        } else {
+            // If the ingredient is not selected, add it to the list
+            updatedSelectedIngredients = [...selectedIngredients, { ...ingredient, hasIngredient: !isSelected }];
+            console.log(updatedSelectedIngredients)
+        }
+        
+        // Notify the parent about the updated selection
+        onSelectedIngredientsChange(updatedSelectedIngredients);
     };
 
-
-    const toggleChipActive = (id: number) => {
-        setFilteredIngredients(prevFilteredIngredients => {
-            const updatedIngredients = prevFilteredIngredients.map(ingredient => (
-                ingredient.id === id
-                    ? { ...ingredient, hasIngredient: !ingredient.hasIngredient }
-                    : ingredient
-            ));
-
-            // Update the selectedIngredients state based on hasIngredient
-            setSelectedIngredients(updatedIngredients.filter(ingredient => ingredient.hasIngredient));
-
-            return updatedIngredients;
-        });
-    };
 
     const groupedIngredients = filteredIngredients.reduce((groups, ingredient) => {
         if (!groups[ingredient.foodGroup]) {
@@ -59,39 +53,36 @@ export const SearchIngredients: React.FC<SearchIngredientsProps> = ({ onSelected
                 className="search-bar"
                 type="text"
                 value={searchTerm}
-                onChange={handleSearch}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
                 placeholder="Search for ingredients..."
             />
-            {selectedIngredients && (
+            {selectedIngredients.length > 0 && (
                 <div className="chip-container">
                     {selectedIngredients.map(ingredient => (
-                        <button 
+                        <button
+                            key={ingredient.id}
                             className="hasIngredients"
-                            style={{ color: "white", backgroundColor: '#001f54', display: 'flex', overflow: 'auto'}}
-                            onClick={() => toggleChipActive(ingredient.id)}
+                            style={{ color: "white", backgroundColor: '#001f54', display: 'flex', overflow: 'auto' }}
+                            onClick={() => toggleChipActive(ingredient)}
                         >
                             <span>{ingredient.name}</span>
                         </button>
-                    )
-                )}
+                    ))}
                 </div>
             )}
-            {searchTerm && (
+            { searchTerm && (
                 <div className="chips-container">
                     {hasIngredients ? (
                         Object.keys(groupedIngredients).map(foodGroup => (
                             <div key={foodGroup} className="food-group">
                                 <h3>{foodGroup}</h3>
                                 {groupedIngredients[foodGroup].map(ingredient => {
-                                    const buttonColor = ingredient.hasIngredient ? 'white' : 'black';
-                                    const buttonBackgroundColor = ingredient.hasIngredient ? '#001f54' : '#f1f1f1';
-                                    
                                     return (
-                                        <button 
+                                        <button
                                             key={ingredient.id}
                                             className="chip-button"
-                                            style={{ color: buttonColor, backgroundColor: buttonBackgroundColor }}
-                                            onClick={() => toggleChipActive(ingredient.id)}
+                                            style={{ color: selectedIngredients.some(item => item.id === ingredient.id) ? 'white' : 'black', backgroundColor: selectedIngredients.some(item => item.id === ingredient.id) ? '#001f54' : '#f1f1f1' }}
+                                            onClick={() => toggleChipActive(ingredient)}
                                         >
                                             <span>{ingredient.name}</span>
                                         </button>
