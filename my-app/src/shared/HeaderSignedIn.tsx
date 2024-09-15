@@ -8,6 +8,9 @@ export const HeaderSignedIn: React.FC = () => {
             <header className="navbar">
                 <div className="nav-left">
                 <SignedIn>
+                    <a href="/search-recipes">
+                        <button>Search New Recipe</button>
+                    </a>
                     <a href="/shopping-cart">
                         <button>Shopping Cart</button>
                     </a>
@@ -23,6 +26,7 @@ export const HeaderSignedIn: React.FC = () => {
                     <SignInButton />
                 </SignedOut>
                 <SignedIn>
+                    <search></search>
                     <UserButton />
                 </SignedIn>
             </header>

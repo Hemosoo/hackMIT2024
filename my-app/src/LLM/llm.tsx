@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './../App.css';
 import { SignedIn, SignedOut, SignInButton, UserButton, SignOutButton } from "@clerk/clerk-react";
-import { Ingredient } from './types/Ingredient';
+import { Ingredient } from '../types/Ingredient';
 
 
 
