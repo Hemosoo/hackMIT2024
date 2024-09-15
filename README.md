@@ -2,7 +2,7 @@ npm install convex
 npm install @clerk/clerk-react
 npm install react-router-dom
 npm install openai
-
+npm install axios
 
 add this key to .env.local:
 to run the app: npm run dev
