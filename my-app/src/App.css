@@ -315,7 +315,7 @@ body {
 /* about us */
 .profile-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Create a 2x2 grid */
+  grid-template-columns: repeat(4, 1fr); /* Create a 2x2 grid */
   gap: 16px; /* Space between items */
   max-width: 600px; /* Optional: Limit the maximum width of the grid */
   margin: auto; /* Center the grid horizontally */
@@ -337,4 +337,24 @@ body {
   margin-top: 8px; /* Space between the picture and the name */
   font-size: 16px; /* Font size of the name */
   color: #333; /* Text color */
+}
+
+.img {
+  height: 300px; /* Adjust the height of the logo as needed */
+  display: block;
+}
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Creates two equal columns */
+  gap: 20px;
+  align-content: end;
+}
+
+.about .left {
+  width: 150%;
+}
+
+.about .right {
+  width: 100%;
+  align-content: left;
 }

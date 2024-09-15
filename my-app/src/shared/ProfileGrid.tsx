@@ -1,10 +1,14 @@
 import React from 'react';
+import charis from '../assets/charis.png';
+import chaelsey from '../assets/chaelsey.png';
+import jerem from '../assets/jeremy.png';
+import hemo from '../assets/hemosoo.png';
 
 const profiles = [
-    { name: 'Charis Ching', imageUrl: 'profile/charis.jpg' },
-    { name: 'Chaelsey Park', imageUrl: 'profile/chaelsey.jpg' },
-    { name: 'Jeremy Sedillo', imageUrl: 'profile/jeremy.jpg' },
-    { name: 'Hemosoo Woo', imageUrl: 'profile/hemosoo.jpg' },
+    { name: 'Charis Ching', imageUrl: charis },
+    { name: 'Chaelsey Park', imageUrl: chaelsey },
+    { name: 'Jeremy Sedillo', imageUrl: jerem },
+    { name: 'Hemosoo Woo', imageUrl: hemo },
   ];
   
 export const ProfileGrid: React.FC = () => {
