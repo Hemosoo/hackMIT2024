@@ -8,13 +8,16 @@ interface FooterProps {
 export const PageFormat: React.FC<FooterProps> = ({ mainContent }) => {
     return (
         <>
-        <HeaderSignedIn/>
-        <main className="main-content">
-            { mainContent }
-        </main>
-        
-        <Footer/>
+        <div className="page-format">
+            <HeaderSignedIn/>
+            <main className="main-content">
+                { mainContent }
+            </main>
+            
+            <Footer/>
+        </div>
         </>
+
 
     );
 };

@@ -6,6 +6,7 @@ body {
   background-color: #f0f4fa;
   color: #333;
   width: 100%;
+  height: 100%;
 }
 
 /* styles.css */
@@ -14,14 +15,15 @@ body {
   box-sizing: border-box; /* Ensures padding and borders are included in the width */
 }
 
+.vsc-initialized {
+  width: 100%;
+  display: block;
+}
+
 .header, .footer {
   background-color: #f8f8f8; /* Optional: Adjust background color if needed */
   padding: 1rem; /* Adjust padding as needed */
   width: 100%;
-}
-
-.main-content {
-  padding: 1rem; /* Adjust padding as needed */
 }
 
 /* Navigation Bar */
@@ -33,7 +35,9 @@ body {
   max-width: 100%;
   background-color: #ffffff;
   border-bottom: 1px solid #e5e5e5;
-  position: relative;
+  position: sticky; /* Make navbar sticky */
+  top: 0; /* Stick to the top of the viewport */
+  z-index: 1000; /* Ensure it's above other content */
 }
 
 .navbar .logo {
@@ -82,6 +86,7 @@ body {
 .main-content p {
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
+  max-width: 45%;
   color: #505F98;
 }
 
