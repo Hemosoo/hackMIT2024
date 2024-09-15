@@ -2,30 +2,37 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './../App.css';
 import { SignedIn, SignedOut, SignInButton, UserButton, SignOutButton } from "@clerk/clerk-react";
+import { Ingredient } from './types/Ingredient';
 
 
 
 export const LLM: React.FC = () => {
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const SINGLE_INPUT = `Come up with as many popular recipe using a combination of some of these ingredients: <ingredients>garlic, butter, chives, onions, pasta, lobster, chicken, shrimp </ingredients>. You do not need to use every ingredient given, especially if the combination is not well-known. Return in the format. 
+  const SINGLE_INPUT = (ingredients: Ingredient[]) => {
 
-  "Recipe Title: 
-  
-  Time to Cook:
-  
-  Ingredients: 
-  
-  How to Make: 
-  
-  Number of Servings:
-  
-  Ingredients used from <ingredients>:
-  
-  Ingredients not used from <ingredients>:
-  
-  Ingredients needed not in <ingredients>:
-  `;
+    return(
+      `Come up with as many popular recipe using a combination of some of these ingredients: <ingredients> ${ingredients} </ingredients>. You do not need to use every ingredient given, especially if the combination is not well-known. Return in the format. 
+
+      "Recipe Title: 
+      
+      Time to Cook:
+      
+      Ingredients: 
+      
+      How to Make: 
+      
+      Number of Servings:
+      
+      Ingredients used from <ingredients>:
+      
+      Ingredients not used from <ingredients>:
+      
+      Ingredients needed not in <ingredients>:
+      `
+    )
+  };
+
   const handleSubmit = async () => {
     setIsLoading(true);
 
@@ -36,7 +43,7 @@ export const LLM: React.FC = () => {
           model: "gpt-4o",
           messages: [
             { role: "system", content: "" },
-            { role: "user", content: SINGLE_INPUT }
+            { role: "user", content: SINGLE_INPUT() }
           ]
         },
         {
