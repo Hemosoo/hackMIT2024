@@ -16,14 +16,12 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<SignInPage />}/>
+        <Route path="/about-team" element={<AboutTeamPage />}/>
+        <Route path="/contact-us" element={<ContactUsPage />}/>
         <Route path="/saved-recipes" element={<SavedRecipesPage />}/>
         <Route path="/shopping-cart" element={<ShoppingCartPage />}/>
-        <Route path="/contact-us" element={<ContactUsPage />}/>
         <Route path="/search-recipes" element={<SearchPage />}/>
-        <Route path="/shopping-cart" element={<ShoppingCartPage />}/>
-        <Route path="/shopping-cart" element={<ShoppingCartPage />}/>
         <Route path="/llm" element={<LLM />}/>
-        <Route path="/about-team" element={<AboutTeamPage />}/>
         <Route path="/recipes/{id}" element={<RecipesPage />}/>
         <Route path="/*" element={<ErrorPage />}/>
       </Routes>
